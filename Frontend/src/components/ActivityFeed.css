@@ -1,0 +1,196 @@
+/* ===== Backdrop ===== */
+.activity-feed-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45); /* slate overlay */
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+/* ===== Slide-in Panel ===== */
+.activity-feed-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 92vw;
+  height: 100vh;
+  background-color: #f8fafc; /* slate-50 */
+  border-left: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease-in-out;
+  z-index: 1001;
+}
+
+.activity-feed-panel.open {
+  transform: translateX(0%);
+}
+
+/* Header */
+.activity-feed-header {
+  position: relative;
+  padding: 14px 56px 14px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.activity-feed-header h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1f2937; /* gray-800 */
+  font-weight: 600;
+}
+
+.close-panel-btn {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #111827;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close-panel-btn:hover {
+  background: #f3f4f6;
+}
+
+/* ===== Body: list scrolls, composer sticky at bottom ===== */
+.activity-feed-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* enables proper flex scrolling */
+}
+
+/* Scrollable list */
+.comment-list {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* States */
+.loading,
+.empty-state {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Sticky composer area */
+.composer {
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 12px 20px;
+  position: sticky;
+  bottom: 0;
+}
+
+/* Input */
+.comment-input-area {
+  position: relative;
+}
+
+.comment-input-area textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px 110px 12px 14px; /* room for the button on the right */
+  border-radius: 10px;
+  border: 1px solid #cbd5e1; /* slate-300 */
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fdfdfd;
+}
+
+/* Existing Post Button — recolored & rectangular */
+.post-comment-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background-color: #0ea5e9; /* sky-500 */
+  color: #ffffff;
+  border: 1px solid #0284c7; /* sky-600 */
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.post-comment-btn:hover {
+  background-color: #0284c7; /* sky-600 */
+}
+
+.post-comment-btn:active {
+  transform: translateY(1px);
+}
+
+/* Individual Comment */
+.comment-item {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #64748b; /* slate-500 */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: #111827; /* gray-900 */
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.comment-text {
+  margin: 0;
+  color: #374151; /* gray-700 */
+  line-height: 1.5;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .activity-feed-panel { width: 92vw; }
+  .comment-input-area textarea { padding-right: 120px; }
+}
